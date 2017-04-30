@@ -79,5 +79,4 @@ def buscar_profesor(message):
     except IndexError:
         bot.send_message(message.chat.id, 'Ha habido algún error... %s' % IndexError)
 
-	
-bot.polling(none_stop=False, interval=0, block=True)
+bot.polling(none_stop=True, interval=0)
