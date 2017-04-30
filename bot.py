@@ -7,6 +7,7 @@ import platform
 import time
 import random
 import requests
+import time
 from lxml import html
 
 apiKey = '' #apiKey here
@@ -15,7 +16,7 @@ bot = telebot.TeleBot(apiKey)
 
 @bot.message_handler(commands=['hola'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "Probando, probando...")
+    bot.send_message(message.chat.id, "Probando, probando... Son las %s:%s:%s, ¡Una hora menos en Canarias!" % (time.localtime()[3], time.localtime()[4], time.localtime()[5]))
 
 @bot.message_handler(commands=['acercade'])
 def send_sysinfo(message):
@@ -23,9 +24,9 @@ def send_sysinfo(message):
     for i in open('/proc/cpuinfo').readlines():
         if(i.startswith("model name")):
             cpu_model = i.split(':')
-    bot.send_message(message.chat.id, "Soy el bot de TecnoUAB y actualmente funciono bajo Python %s ejecutado en %s. Dispongo de %sMB de RAM (tengo libres %sMB) y mi CPU es %s" % (sys.version, platform.platform(), meminfo['MemTotal']/1024, meminfo['MemFree']/1024, cpu_model[1][:-1].lstrip()))
+    bot.send_message(message.chat.id, "Soy el bot de TecnoUAB y actualmente funciono bajo Python %s ejecutado en %s. Dispongo de %sMB de RAM (tengo libres %sMB) y mi CPU es %s. Este grupo es del tipo %s" % (sys.version, platform.platform(), meminfo['MemTotal']/1024, meminfo['MemFree']/1024, cpu_model[1][:-1].lstrip(), message.chat.type))
 
-@bot.message_handler(commands=['breakapart'])
+@bot.message_handler(commands=['ordena'])
 def send_sorted(message):
     numbers = message.text[12:].split(' ')
     numbers2 = []
@@ -80,3 +81,4 @@ def buscar_profesor(message):
         bot.send_message(message.chat.id, 'Ha habido algún error... %s' % IndexError)
 
 bot.polling(none_stop=True, interval=0)
+
