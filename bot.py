@@ -28,7 +28,7 @@ def send_sysinfo(message):
 
 @bot.message_handler(commands=['ordena'])
 def send_sorted(message):
-    numbers = message.text[12:].split(' ')
+    numbers = message.text[8:].split(' ')
     numbers2 = []
     try:
         init = time.time()
