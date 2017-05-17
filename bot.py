@@ -54,6 +54,10 @@ def tirar_dado(message):
     else:
         bot.send_message(message.chat.id, "Tirando dado de 6 caras... ¡%s!" % random.randint(1,6))
 
+@bot.message_handler(commands=['esquemas'])
+def send_welcome(message):
+    bot.send_message(message.chat.id, "Estos son los esquemas")
+
 @bot.message_handler(commands=['profesor'])
 def buscar_profesor(message):
     try:
