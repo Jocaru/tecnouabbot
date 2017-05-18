@@ -57,6 +57,7 @@ def tirar_dado(message):
 @bot.message_handler(commands=['esquemas'])
 def send_welcome(message):
     bot.send_message(message.chat.id, "Estos son los esquemas")
+    bot.sendPhoto(chat_id, 'https://github.com/Jocaru/tecnouabbot/blob/master/css_puns_01.png')
 
 @bot.message_handler(commands=['profesor'])
 def buscar_profesor(message):
