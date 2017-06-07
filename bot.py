@@ -85,5 +85,20 @@ def buscar_profesor(message):
     except IndexError:
         bot.send_message(message.chat.id, 'Ha habido algún error... %s' % IndexError)
 
+@bot.message_handler(commands=['fun'])
+def buscar_codegift(message):
+    try:
+        r = request.get('http://thecodinglove.com/random')
+        html_busqueda = html.fromstring(r.content)
+        html_busqueda = html.fromstring(r.content)
+        inicio = html_busqueda.get_element_by_id('post1')
+        gift_text = inicio[0].text_content()
+        gift_image = inicio[1].xpath('//div[@class="bodytype"]/p/img/@src')[0]
+
+        bot.send_document(message.chat.id, document=gift_text, caption=gift_text)
+    except ValueError:
+        bot.send_message(message.chat.id, 'Ha habido algún error... %s' % ValueError)
+
+
 bot.polling(none_stop=True, interval=0)
 
